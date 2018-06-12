@@ -1,0 +1,14 @@
+{
+    "name": "lendable/interview-interpolation",
+    "type": "project",
+    "autoload": {
+      "psr-4": {
+        "Lendable\\Interview\\Interpolation\\": "src/"
+      }
+    },
+    "autoload-dev": {
+      "psr-4": {
+        "Lendable\\Interview\\Interpolation\\Tests\\": "tests/"
+      }
+    }
+}
