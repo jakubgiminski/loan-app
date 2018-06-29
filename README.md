@@ -5,7 +5,7 @@ The fee structure does not follow a formula.
 
 Values in between the breakpoints should be interpolated linearly between
 the lower bound and upper bound that they fall between. The fee should then be 
-"rounded" such that (fee + loan amount) is an exact multiple of 5.
+"rounded up" such that (fee + loan amount) is an exact multiple of 5.
 
 The minimum amount for a loan is £1,000, and the maximum is £20,000.
 You can assume values will always be within this range but they may be any value 
@@ -39,6 +39,7 @@ $fee = $calculator->calculate($application);
 ```
 
 # Fee Structure
+The fee structure doesn't follow particular algorithm and it is possible that same fee will be applicable for different amounts.
 
 ### Term 12
 ```
