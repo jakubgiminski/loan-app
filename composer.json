@@ -4,11 +4,15 @@
     "autoload": {
       "psr-4": {
         "Lendable\\Interview\\Interpolation\\": "src/"
+
       }
     },
     "autoload-dev": {
       "psr-4": {
         "Lendable\\Interview\\Interpolation\\Tests\\": "tests/"
       }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
     }
 }
