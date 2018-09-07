@@ -55,7 +55,7 @@ class FeeConfig
 
     public static function isTreshold(float $value): bool
     {
-        return $value % 1000 === 0 && $value >= 1000 && $value <= 20000;
+        return fmod($value, 1000) === 0.0 && $value >= 1000 && $value <= 20000;
     }
 
     public static function getPreviousTreshold(float $value): float
