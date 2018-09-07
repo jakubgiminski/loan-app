@@ -25,8 +25,8 @@ final class FeeCalculatorTest extends TestCase
     public function testRoundsFeeUpSoThatAmountPlusFeeAreDivisibleByFive(): void
     {
         $calculator = new FeeCalculator();
-        $amount = 2745;
+        $amount = 2749.89;
         $fee = $calculator->calculate(new LoanApplication(24, $amount));
-        self::assertEquals(0, ($amount + $fee) % 5);
+        self::assertEquals(0, fmod(($amount + $fee), 5));
     }
 }

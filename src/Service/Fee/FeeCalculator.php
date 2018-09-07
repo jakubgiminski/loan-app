@@ -34,6 +34,6 @@ class FeeCalculator implements FeeCalculatorInterface
         if (!$reminder) {
             return $fee;
         }
-        return round(5 - $reminder + $fee);
+        return round(5 - $reminder + $fee, 2);
     }
 }
