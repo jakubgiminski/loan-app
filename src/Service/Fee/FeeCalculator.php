@@ -25,10 +25,15 @@ class FeeCalculator implements FeeCalculatorInterface
         $fee = ($previousTresholdFee * ($nextTreshold - $amount) + $nextTresholdFee * ($amount - $previousTreshold))
             / ($nextTreshold - $previousTreshold);
 
-        // @todo round up
+        return $this->roundUpFee($amount, $fee);
+    }
 
-        return $fee;
+    private function roundUpFee(float $amount, float $fee): float
+    {
+        $reminder = fmod(($amount + $fee), 5);
+        if (!$reminder) {
+            return $fee;
+        }
+        return round(5 - $reminder + $fee);
     }
 }
-
-// x0 = previousTreshold, y0 = previousTresholdFee, x1 = nextTreshold, y1 = nextTresholdFee, x = amount
