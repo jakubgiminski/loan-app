@@ -1,14 +1,17 @@
 {
-    "name": "lendable/interview-interpolation",
+    "name": "lendable/interview",
     "type": "project",
     "autoload": {
       "psr-4": {
-        "Lendable\\Interview\\Interpolation\\": "src/"
+        "LoanApp\\": "src/"
       }
     },
     "autoload-dev": {
       "psr-4": {
-        "Lendable\\Interview\\Interpolation\\Tests\\": "tests/"
+        "LoanApp\\Tests\\": "tests/"
       }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
     }
 }
