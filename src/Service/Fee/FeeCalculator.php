@@ -1,10 +1,8 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace LoanApp\Service\Fee;
 
-namespace Lendable\Interview\Interpolation\Service\Fee;
-
-use Lendable\Interview\Interpolation\Model\LoanApplication;
+use LoanApp\Model\LoanApplication;
 
 class FeeCalculator implements FeeCalculatorInterface
 {
@@ -13,27 +11,23 @@ class FeeCalculator implements FeeCalculatorInterface
         $term = $application->getTerm();
         $amount = $application->getAmount();
 
-        if (FeeConfig::isTreshold($amount)) {
+        if (FeeConfig::isValueAtThreshold($amount)) {
             return FeeConfig::getFee($term, $amount);
         }
 
-        $previousTreshold = FeeConfig::getPreviousTreshold($amount);
-        $previousTresholdFee = FeeConfig::getFee($term, $previousTreshold);
-        $nextTreshold = FeeConfig::getNextTreshold($amount);
-        $nextTresholdFee = FeeConfig::getFee($term, $nextTreshold);
+        $previousThreshold = FeeConfig::getPreviousThreshold($amount);
+        $previousThresholdFee = FeeConfig::getFee($term, $previousThreshold);
+        $nextThreshold = FeeConfig::getNextThreshold($amount);
+        $nextThresholdFee = FeeConfig::getFee($term, $nextThreshold);
 
-        $fee = ($previousTresholdFee * ($nextTreshold - $amount) + $nextTresholdFee * ($amount - $previousTreshold))
-            / ($nextTreshold - $previousTreshold);
+        $fee = ($previousThresholdFee * ($nextThreshold - $amount) + $nextThresholdFee * ($amount - $previousThreshold))
+            / ($nextThreshold - $previousThreshold);
 
-        return $this->roundUpFee($amount, $fee);
-    }
-
-    private function roundUpFee(float $amount, float $fee): float
-    {
         $reminder = fmod(($amount + $fee), 5);
-        if (!$reminder) {
-            return $fee;
+        if ($reminder) {
+            return round(5 - $reminder + $fee, 2);
         }
-        return round(5 - $reminder + $fee, 2);
+
+        return $fee;
     }
 }

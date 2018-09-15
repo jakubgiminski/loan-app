@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Lendable\Interview\Interpolation\Service\Fee;
+namespace LoanApp\Service\Fee;
 
 class FeeConfig
 {
@@ -53,23 +51,23 @@ class FeeConfig
         ],
     ];
 
-    public static function isTreshold(float $value): bool
+    public static function isValueAtThreshold(float $value): bool
     {
         return fmod($value, 1000) === 0.0 && $value >= 1000 && $value <= 20000;
     }
 
-    public static function getPreviousTreshold(float $value): float
+    public static function getPreviousThreshold(float $value): float
     {
         return (float) ((int) ($value / 1000)) * 1000;
     }
 
-    public static function getNextTreshold(float $value): float
+    public static function getNextThreshold(float $value): float
     {
-        return self::getPreviousTreshold($value + 1000);
+        return self::getPreviousThreshold($value + 1000);
     }
 
-    public static function getFee(int $term, float $treshold): float
+    public static function getFee(int $term, float $threshold): float
     {
-        return self::CONFIG[$term][$treshold];
+        return self::CONFIG[$term][$threshold];
     }
 }
