@@ -7,36 +7,36 @@ use PHPUnit\Framework\TestCase;
 
 final class FeeConfigTest extends TestCase
 {
-    public function testCanCheckIfValueIsAtTreshold(): void
+    public function testCanCheckIfValueIsAtThreshold(): void
     {
         self::assertTrue(
-            FeeConfig::isValueAtTreshold(1000.0)
+            FeeConfig::isValueAtThreshold(1000.0)
         );
     }
 
-    public function testCanCheckIfValueIsNotAtTreshold(): void
+    public function testCanCheckIfValueIsNotAtThreshold(): void
     {
         self::assertFalse(
-            FeeConfig::isValueAtTreshold(1001.0)
+            FeeConfig::isValueAtThreshold(1001.0)
         );
     }
 
-    public function testCanGetPreviousTreshold(): void
+    public function testCanGetPreviousThreshold(): void
     {
         self::assertEquals(
             9000,
-            FeeConfig::getPreviousTreshold(9900)
+            FeeConfig::getPreviousThreshold(9900)
         );
     }
 
-    public function testCanGetNextTreshold(): void
+    public function testCanGetNextThreshold(): void
     {
         self::assertEquals(
-            10000, FeeConfig::getNextTreshold(9100)
+            10000, FeeConfig::getNextThreshold(9100)
         );
     }
 
-    public function testCanGetFeeForTermAndTreshold(): void
+    public function testCanGetFeeForTermAndThreshold(): void
     {
         self::assertEquals(
             140,

@@ -11,17 +11,17 @@ class FeeCalculator implements FeeCalculatorInterface
         $term = $application->getTerm();
         $amount = $application->getAmount();
 
-        if (FeeConfig::isValueAtTreshold($amount)) {
+        if (FeeConfig::isValueAtThreshold($amount)) {
             return FeeConfig::getFee($term, $amount);
         }
 
-        $previousTreshold = FeeConfig::getPreviousTreshold($amount);
-        $previousTresholdFee = FeeConfig::getFee($term, $previousTreshold);
-        $nextTreshold = FeeConfig::getNextTreshold($amount);
-        $nextTresholdFee = FeeConfig::getFee($term, $nextTreshold);
+        $previousThreshold = FeeConfig::getPreviousThreshold($amount);
+        $previousThresholdFee = FeeConfig::getFee($term, $previousThreshold);
+        $nextThreshold = FeeConfig::getNextThreshold($amount);
+        $nextThresholdFee = FeeConfig::getFee($term, $nextThreshold);
 
-        $fee = ($previousTresholdFee * ($nextTreshold - $amount) + $nextTresholdFee * ($amount - $previousTreshold))
-            / ($nextTreshold - $previousTreshold);
+        $fee = ($previousThresholdFee * ($nextThreshold - $amount) + $nextThresholdFee * ($amount - $previousThreshold))
+            / ($nextThreshold - $previousThreshold);
 
         $reminder = fmod(($amount + $fee), 5);
         if ($reminder) {
