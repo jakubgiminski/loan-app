@@ -1,23 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
+namespace LoanApp\Service\Fee;
 
-namespace Lendable\Interview\Interpolation\Service\Fee;
+use LoanApp\Model\LoanApplication;
 
-use Lendable\Interview\Interpolation\Model\LoanApplication;
-
-/**
- * Calculates fees for loan applications.
- */
 interface FeeCalculatorInterface
 {
-    /**
-     * Calculates the fee for a loan application.
-     *
-     * @param LoanApplication $application The loan application to
-     * calculate for.
-     *
-     * @return float The calculated fee.
-     */
     public function calculate(LoanApplication $application): float;
 }

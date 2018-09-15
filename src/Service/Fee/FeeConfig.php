@@ -1,8 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
-declare(strict_types=1);
-
-namespace Lendable\Interview\Interpolation\Service\Fee;
+namespace LoanApp\Service\Fee;
 
 class FeeConfig
 {
@@ -53,7 +51,7 @@ class FeeConfig
         ],
     ];
 
-    public static function isTreshold(float $value): bool
+    public static function isValueAtTreshold(float $value): bool
     {
         return fmod($value, 1000) === 0.0 && $value >= 1000 && $value <= 20000;
     }

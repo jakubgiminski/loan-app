@@ -1,12 +1,10 @@
-<?php
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Lendable\Interview\Interpolation\Tests;
 
+use LoanApp\Model\LoanApplication;
+use LoanApp\Service\Fee\FeeCalculator;
 use PHPUnit\Framework\TestCase;
-use Lendable\Interview\Interpolation\Service\Fee\FeeConfig;
-use Lendable\Interview\Interpolation\Service\Fee\FeeCalculator;
-use Lendable\Interview\Interpolation\Model\LoanApplication;
 
 final class FeeCalculatorTest extends TestCase
 {
